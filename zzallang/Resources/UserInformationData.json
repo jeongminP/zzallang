@@ -1,0 +1,24 @@
+[
+    {
+        "userId": "cherryPie",
+        "password": "cherrycherry",
+        "id": 100123,
+        "nickname": "민지",
+        "labelColor": "pink"
+    },
+    {
+        "userId": "ninidi",
+        "password": "pancakelover",
+        "id": 100243,
+        "nickname": "예림",
+        "labelColor": "yellow"
+    },
+    {
+        "userId": "cocacola",
+        "password": "masidda345",
+        "id": 100396,
+        "nickname": "태훈",
+        "labelColor": "green"
+    }
+]
+ 

@@ -1,0 +1,117 @@
+[
+    {
+        "name": "홍콩",
+        "userId": "cherryPie",
+        "currency": "HKD",
+        "id": 1001,
+        "startingDate": "2018-02-15",
+        "finishingDate": "2018-02-22",
+        "totalExpenditure": 300000,
+        "sharedDateList": [
+            {
+                "date": "0000-00-00",
+                "dailyTitle": "여행준비",
+                "dailyExpenditure": 300000,
+                "expenditureList": [
+                    {
+                        "title": "비행기 예매",
+                        "payment": "card",
+                        "currency": "KRW",
+                        "price": 300000,
+                        "category": "traffic",
+                        "time": "00:00",
+                        "memo": "",
+                        "payer": "cherryPie",
+                        "related": ["cherryPie", "ninidi"]
+                    }
+                ]
+            },
+            {
+                "date": "2018-02-16",
+                "dailyTitle": "디즈니랜드",
+                "dailyExpenditure": 90000,
+                "expenditureList": [
+                    {
+                        "title": "디즈니랜드 입장",
+                        "payment": "cash",
+                        "currency": "HKD",
+                        "price": 600,
+                        "category": "tourism",
+                        "time": "10:00",
+                        "memo": "",
+                        "payer": "ninidi",
+                        "related": ["cherryPie", "ninidi"]
+                    }
+                ]
+            }
+        ],
+        "personalList": [
+            {
+                "userId": "cherryPie",
+                "personalTotalExpenditure": 30000,
+                "dateList": [
+                    {
+                        "date": "0000-00-00",
+                        "dailyTitle": "여행준비",
+                        "dailyExpenditure": 30000,
+                        "expenditureList": [
+                            {
+                                "title": "캐리어 구매",
+                                "payment": "card",
+                                "currency": "KRW",
+                                "price": 30000,
+                                "category": "etc",
+                                "time": "00:00",
+                                "memo": ""
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "userId": "ninidi",
+                "personalTotalExpenditure": 6000,
+                "dateList": [
+                    {
+                        "date": "2018-02-15",
+                        "dailyTitle": "홍콩도착",
+                        "dailyExpenditure": 6000,
+                        "expenditureList": [
+                            {
+                                "title": "늦은 저녁",
+                                "payment": "cash",
+                                "currency": "HKD",
+                                "price": 40,
+                                "category": "food",
+                                "time": "22:30",
+                                "memo": "편의점"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "미국 시카고, 뉴욕",
+        "userId": "cherryPie",
+        "currency": "USD",
+        "id": 1002,
+        "startingDate": "2019-05-08",
+        "finishingDate": "2019-05-18",
+        "totalExpenditure": 0,
+        "sharedDateList": [],
+        "personalList": []
+    },
+    {
+        "name": "캐나다 퀘벡",
+        "userId": "cherryPie",
+        "currency": "CAD",
+        "id": 1003,
+        "startingDate": "2019-05-18",
+        "finishingDate": "2019-05-22",
+        "totalExpenditure": 0,
+        "sharedDateList": [],
+        "personalList": []
+    }
+]
