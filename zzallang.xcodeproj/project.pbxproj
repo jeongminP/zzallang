@@ -150,6 +150,20 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		255E0D3723CDA34E00253438 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				2592BA1923BCD13F00E747E0 /* HomeView.swift */,
+				250F843723C48079000A2ECA /* NewTripView.swift */,
+				250F843523C48038000A2ECA /* TripPage.swift */,
+				250F843923C485A6000A2ECA /* SharedPage.swift */,
+				250F844923C73A06000A2ECA /* SharedPageDateRow.swift */,
+				250F844723C714FF000A2ECA /* SharedPageExpenditureRow.swift */,
+				250F844523C6FCFB000A2ECA /* PersonalPage.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
 		2592BA0923BCD13F00E747E0 = {
 			isa = PBXGroup;
 			children = (
@@ -175,22 +189,16 @@
 		2592BA1423BCD13F00E747E0 /* zzallang */ = {
 			isa = PBXGroup;
 			children = (
+				255E0D3723CDA34E00253438 /* UI */,
 				250F843423C47FE9000A2ECA /* Models */,
 				250F842723C44DF5000A2ECA /* Resources */,
 				25B6416023BCF4C600F1C492 /* GoogleService-Info.plist */,
 				2592BA1523BCD13F00E747E0 /* AppDelegate.swift */,
 				2592BA1723BCD13F00E747E0 /* SceneDelegate.swift */,
-				2592BA1923BCD13F00E747E0 /* HomeView.swift */,
-				250F843723C48079000A2ECA /* NewTripView.swift */,
 				2592BA1B23BCD14000E747E0 /* Assets.xcassets */,
 				2592BA2023BCD14000E747E0 /* LaunchScreen.storyboard */,
 				2592BA2323BCD14000E747E0 /* Info.plist */,
 				2592BA1D23BCD14000E747E0 /* Preview Content */,
-				250F843523C48038000A2ECA /* TripPage.swift */,
-				250F843923C485A6000A2ECA /* SharedPage.swift */,
-				250F844923C73A06000A2ECA /* SharedPageDateRow.swift */,
-				250F844723C714FF000A2ECA /* SharedPageExpenditureRow.swift */,
-				250F844523C6FCFB000A2ECA /* PersonalPage.swift */,
 			);
 			path = zzallang;
 			sourceTree = "<group>";
