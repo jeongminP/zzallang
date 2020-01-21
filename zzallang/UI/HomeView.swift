@@ -17,20 +17,32 @@ struct HomeView: View {
             List{
                 ForEach(userData.trips) {trip in
                     NavigationLink(destination: TripPage(tripData: trip)) {
+                        HStack {
+                            Spacer()
+                            
                             Text(trip.name)
                             .font(.headline)
                             .padding(.leading, 10.0)
                                 .frame(height: 100.0)
+                            
+                            Spacer()
                         }
+                    }
                 }
                 NavigationLink(destination: NewTripView()) {
-                    VStack {
-                        Image(systemName: "plus.circle")
-                        Text("새 여행 만들기")
-                        .font(.headline)
+                    HStack {
+                        Spacer()
+                        
+                        VStack {
+                            Image(systemName: "plus.circle")
+                            Text("새 여행 만들기")
+                            .font(.headline)
+                        }
+                        .padding(.leading, 10.0)
+                        .frame(height: 100.0)
+                        
+                        Spacer()
                     }
-                    .padding(.leading, 10.0)
-                    .frame(height: 100.0)
                 }
             }
             .navigationBarTitle("내 여행 목록", displayMode: .inline)

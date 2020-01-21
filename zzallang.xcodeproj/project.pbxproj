@@ -27,6 +27,9 @@
 		2592BA2223BCD14000E747E0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2592BA2023BCD14000E747E0 /* LaunchScreen.storyboard */; };
 		2592BA2D23BCD14100E747E0 /* zzallangTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2592BA2C23BCD14100E747E0 /* zzallangTests.swift */; };
 		2592BA3823BCD14100E747E0 /* zzallangUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2592BA3723BCD14100E747E0 /* zzallangUITests.swift */; };
+		25B60DAB23D6DC56008DDED4 /* UserInfoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25B60DAA23D6DC56008DDED4 /* UserInfoData.swift */; };
+		25B60DAD23D6E87F008DDED4 /* PersonalPageDateRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25B60DAC23D6E87F008DDED4 /* PersonalPageDateRow.swift */; };
+		25B60DAF23D6E893008DDED4 /* PersonalPageExpenditureRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25B60DAE23D6E893008DDED4 /* PersonalPageExpenditureRow.swift */; };
 		25B6416123BCF4C600F1C492 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 25B6416023BCF4C600F1C492 /* GoogleService-Info.plist */; };
 		C1AA8A10159C1C5DA4AAC877 /* libPods-zzallang.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A72C059627840901B4F20FDF /* libPods-zzallang.a */; };
 		F9C02E57E1CA15AA29AAF976 /* libPods-zzallang-zzallangUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B8DF9955A608167F3E307AC6 /* libPods-zzallang-zzallangUITests.a */; };
@@ -92,6 +95,9 @@
 		2592BA4523BCD86800E747E0 /* FirebaseCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2592BA4623BCD86800E747E0 /* FirebaseDatabase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseDatabase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		25B03A4B23BCF08F0070DA6C /* libFirebaseCore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libFirebaseCore.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		25B60DAA23D6DC56008DDED4 /* UserInfoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoData.swift; sourceTree = "<group>"; };
+		25B60DAC23D6E87F008DDED4 /* PersonalPageDateRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalPageDateRow.swift; sourceTree = "<group>"; };
+		25B60DAE23D6E893008DDED4 /* PersonalPageExpenditureRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalPageExpenditureRow.swift; sourceTree = "<group>"; };
 		25B6416023BCF4C600F1C492 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		508E0A4421CFD6AD5451115D /* Pods-zzallang-zzallangTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-zzallang-zzallangTests.release.xcconfig"; path = "Target Support Files/Pods-zzallang-zzallangTests/Pods-zzallang-zzallangTests.release.xcconfig"; sourceTree = "<group>"; };
 		6205ACC78DECBB43B5962BCB /* Pods-zzallang-zzallangTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-zzallang-zzallangTests.debug.xcconfig"; path = "Target Support Files/Pods-zzallang-zzallangTests/Pods-zzallang-zzallangTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -146,6 +152,7 @@
 				250F842C23C479FB000A2ECA /* TripData.swift */,
 				250F842E23C47ABA000A2ECA /* Data.swift */,
 				250F843023C47BD6000A2ECA /* UserData.swift */,
+				25B60DAA23D6DC56008DDED4 /* UserInfoData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -160,6 +167,8 @@
 				250F844923C73A06000A2ECA /* SharedPageDateRow.swift */,
 				250F844723C714FF000A2ECA /* SharedPageExpenditureRow.swift */,
 				250F844523C6FCFB000A2ECA /* PersonalPage.swift */,
+				25B60DAC23D6E87F008DDED4 /* PersonalPageDateRow.swift */,
+				25B60DAE23D6E893008DDED4 /* PersonalPageExpenditureRow.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -463,11 +472,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				250F843823C48079000A2ECA /* NewTripView.swift in Sources */,
+				25B60DAD23D6E87F008DDED4 /* PersonalPageDateRow.swift in Sources */,
 				250F843123C47BD6000A2ECA /* UserData.swift in Sources */,
 				2592BA1623BCD13F00E747E0 /* AppDelegate.swift in Sources */,
+				25B60DAB23D6DC56008DDED4 /* UserInfoData.swift in Sources */,
 				250F842F23C47ABA000A2ECA /* Data.swift in Sources */,
 				2592BA1823BCD13F00E747E0 /* SceneDelegate.swift in Sources */,
 				250F842D23C479FB000A2ECA /* TripData.swift in Sources */,
+				25B60DAF23D6E893008DDED4 /* PersonalPageExpenditureRow.swift in Sources */,
 				250F844623C6FCFB000A2ECA /* PersonalPage.swift in Sources */,
 				250F843623C48038000A2ECA /* TripPage.swift in Sources */,
 				250F844A23C73A06000A2ECA /* SharedPageDateRow.swift in Sources */,

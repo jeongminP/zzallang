@@ -1,15 +1,15 @@
 //
-//  SharedPageDateRow.swift
+//  PersonalPageDateRow.swift
 //  zzallang
 //
-//  Created by 박정민 on 2020/01/09.
+//  Created by 박정민 on 2020/01/21.
 //  Copyright © 2020 박정민. All rights reserved.
 //
 
 import SwiftUI
 
-struct SharedPageDateRow: View {
-    var item: SharedDailyItem
+struct PersonalPageDateRow: View {
+    var item: PersonalDailyItem
     
     var body: some View {
         List {
@@ -19,7 +19,7 @@ struct SharedPageDateRow: View {
                 Text("KRW \(item.dailyCardExpenditure() + item.dailyCashExpenditure())")
             }) {
                 ForEach(item.expenditureList, id: \.self) {
-                    SharedPageExpenditureRow(item: $0)
+                    PersonalPageExpenditureRow(item: $0)
                 }
                 HStack{
                     Spacer()
@@ -33,12 +33,12 @@ struct SharedPageDateRow: View {
     }
 }
 
-struct SharedPageDateRow_Previews: PreviewProvider {
+struct PersonalPageDateRow_Previews: PreviewProvider {
     static var previews: some View {
         let userData = UserData()
         return Group {
-            SharedPageDateRow(item: userData.trips[0].sharedDateList[0])
-            SharedPageDateRow(item: userData.trips[0].sharedDateList[1])
+            PersonalPageDateRow(item: userData.trips[0].personalList[0].dateList[0])
+            PersonalPageDateRow(item: userData.trips[0].personalList[1].dateList[0])
         }.previewLayout(.sizeThatFits)
     }
 }

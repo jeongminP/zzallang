@@ -19,7 +19,7 @@ struct TripPage: View {
                         Image(systemName: "person.3.fill")
                         Text("공유")
                 }.tag(0)
-                PersonalPage()
+                PersonalPage(tripData: tripData)
                     .tabItem {
                         Image(systemName: "person.fill")
                         Text("개인")

@@ -42,6 +42,14 @@ struct TripData: Hashable, Codable, Identifiable {
         })
         return total
     }
+    
+    func sharedExpenditure(of userId: String) -> Int {
+        var total: Int = 0
+        self.sharedDateList.forEach({
+            total += $0.dailySharedExpenditure(of: userId)
+        })
+        return total
+    }
 }
 
 struct SharedDailyItem: Hashable, Codable {
@@ -69,6 +77,16 @@ struct SharedDailyItem: Hashable, Codable {
         })
         return Int(total)
     }
+    
+    func dailySharedExpenditure(of userId: String) -> Int {
+        var total: Double = 0.0
+        self.expenditureList.forEach({
+            if $0.payer == userId {
+                total += Double($0.price) * $0.currency.exchangeRate()
+            }
+        })
+        return Int(total)
+    }
 }
 
 struct SharedExpenditureItem: Hashable, Codable {
@@ -86,14 +104,43 @@ struct SharedExpenditureItem: Hashable, Codable {
 struct PersonalListItem: Hashable, Codable {
     var userId: String
     var personalTotalExpenditure: Int
-    var dateList: [personalDailyItem]
+    var dateList: [PersonalDailyItem]
+    
+    func personalExpenditure() -> Int {
+        var total: Int = 0
+        self.dateList.forEach({
+            total += $0.dailyCashExpenditure()
+            total += $0.dailyCardExpenditure()
+        })
+        return total
+    }
 }
 
-struct personalDailyItem: Hashable, Codable {
+struct PersonalDailyItem: Hashable, Codable {
     var date: String
     var dailyTitle: String
     var dailyExpenditure: Int
     var expenditureList: [PersonalExpenditureItem]
+    
+    func dailyCashExpenditure() -> Int {
+        var total: Double = 0.0
+        self.expenditureList.forEach({
+            if $0.payment == .cash {
+                total += Double($0.price) * $0.currency.exchangeRate()
+            }
+        })
+        return Int(total)
+    }
+    
+    func dailyCardExpenditure() -> Int {
+        var total: Double = 0.0
+        self.expenditureList.forEach({
+            if $0.payment == .card {
+                total += Double($0.price) * $0.currency.exchangeRate()
+            }
+        })
+        return Int(total)
+    }
 }
 
 struct PersonalExpenditureItem: Hashable, Codable {

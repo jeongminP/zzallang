@@ -12,7 +12,7 @@ import UIKit
 import SwiftUI
 
 let tripData: [TripData] = load("ExampleData.json")
-//let hikeData: [Hike] = load("hikeData.json")
+let userInfoData: [UserInfoData] = load("UserInformationData.json")
 
 func load<T: Decodable>(_ filename: String) -> T {
     let data: Data

@@ -20,14 +20,13 @@ struct SharedPage: View {
     
     var body: some View {
         VStack(alignment: HorizontalAlignment.leading) {
-            VStack(alignment: .leading) {
+            VStack(alignment: HorizontalAlignment.leading) {
                 Text("여행기간 : \(tripData.startingDate) ~ \(tripData.finishingDate)").font(.headline) //추후 여행정보 수정을 위한 버튼으로 변경
                 HStack {
                     Text("총 지출: ₩\(totalExpenditure)").font(.headline)
                     Text("현금 ₩\(tripData.totalCashExpenditure())")
                     Text("카드 ₩\(tripData.totalCardExpenditure())")
                 }
-
             }
             .frame(width: CGFloat(400.0))
             .offset(x: 10.0)
