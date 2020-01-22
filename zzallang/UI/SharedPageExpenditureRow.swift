@@ -13,6 +13,8 @@ struct SharedPageExpenditureRow: View {
     
     var body: some View {
         HStack {
+            Text(item.time)
+                .font(.caption)
             item.category.image()
                 .resizable()
                 .frame(width: 50, height: 50)
@@ -23,7 +25,6 @@ struct SharedPageExpenditureRow: View {
             Spacer()
             Text("\(item.currency.toString()) \(item.price)").font(.body)
         }.frame(height: 50)
-        //.padding()
     }
 }
 

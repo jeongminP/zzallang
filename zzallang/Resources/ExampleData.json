@@ -23,6 +23,17 @@
                         "memo": "",
                         "payer": "cherryPie",
                         "related": ["cherryPie", "ninidi"]
+                    },
+                    {
+                        "title": "숙소 예약",
+                        "payment": "card",
+                        "currency": "KRW",
+                        "price": 500000,
+                        "category": "lodgement",
+                        "time": "00:00",
+                        "memo": "",
+                        "payer": "ninidi",
+                        "related": ["cherryPie", "ninidi"]
                     }
                 ]
             },
@@ -62,6 +73,31 @@
                                 "price": 30000,
                                 "category": "etc",
                                 "time": "00:00",
+                                "memo": ""
+                            }
+                        ]
+                    },
+                    {
+                        "date": "2019-02-17",
+                        "dailyTitle": "몽콕 야시장",
+                        "dailyExpenditure": 30000,
+                        "expenditureList": [
+                            {
+                                "title": "치파오 구입",
+                                "payment": "cash",
+                                "currency": "HKD",
+                                "price": 200,
+                                "category": "shopping",
+                                "time": "19:00",
+                                "memo": ""
+                            },
+                            {
+                                "title": "샤샤 미니어쳐 향수",
+                                "payment": "cash",
+                                "currency": "HKD",
+                                "price": 50,
+                                "category": "shopping",
+                                "time": "18:00",
                                 "memo": ""
                             }
                         ]

@@ -26,7 +26,7 @@ struct NewTripView: View {
     }
     
     var dateRange: ClosedRange<Date> {
-        let startingDateObject = Date()//.invertToDate(with: newTrip.startingDate)
+        let startingDateObject = Date()
         let min = Calendar.current.date(byAdding: .year, value: -1, to: startingDateObject)!
         let max = Calendar.current.date(byAdding: .year, value: 1, to: startingDateObject)!
         return min...max
@@ -36,8 +36,9 @@ struct NewTripView: View {
         Button(action: { self.verifyToMakeNewTrip() }) {
             Text("확인")
                 .padding()
-        }.alert(isPresented: $showingAlert) {
-            Alert(title: Text("알림"), message: Text("정보를 올바르게 입력해주세요"), dismissButton: .default(Text("확인")))
+            }.disabled(!canMake())
+        .alert(isPresented: $showingAlert) {
+            Alert(title: Text("알림"), message: Text("일정을 올바르게 입력해주세요"), dismissButton: .default(Text("확인")))
         }
     }
     
@@ -56,6 +57,7 @@ struct NewTripView: View {
                         selection: $startingDateObject,
                         in: dateRange,
                         displayedComponents: .date)
+                        .labelsHidden()
             }
             .padding(.top)
 
@@ -66,6 +68,7 @@ struct NewTripView: View {
                         selection: $finishingDateObject,
                         in: dateRange,
                         displayedComponents: .date)
+                        .labelsHidden()
             }
             .padding(.top)
             
@@ -77,20 +80,24 @@ struct NewTripView: View {
                     }
                 }
                 .pickerStyle(WheelPickerStyle())
+                .labelsHidden()
             }
             .padding(.top)
         }
         .navigationBarTitle("새 여행 만들기")
-    .navigationBarItems(trailing: makingNewTripButton)
+        .navigationBarItems(trailing: makingNewTripButton)
+    }
+    
+    func canMake() -> Bool {
+        if newTrip.name.isEmpty {
+            return false
+        }
+        return true
     }
     
     func verifyToMakeNewTrip() {
         newTrip.id = newId
         
-        if newTrip.name.isEmpty {
-            self.showingAlert = true
-            return
-        }
         if startingDateObject > finishingDateObject {
             self.showingAlert = true
             return

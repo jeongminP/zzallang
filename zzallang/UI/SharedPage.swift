@@ -33,7 +33,7 @@ struct SharedPage: View {
             
             List {
                 ForEach(sharedList, id: \.self) { dateItem in
-                    SharedPageDateRow(item: dateItem)
+                    SharedPageDateRow(tripData: self.tripData, item: dateItem)
                 }
             }
         }

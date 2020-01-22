@@ -10,6 +10,14 @@ import SwiftUI
 
 struct PersonalPageDateRow: View {
     var item: PersonalDailyItem
+    var sortedList: [PersonalExpenditureItem] {
+        item.expenditureList.sorted(by: { first, second in
+            if first.time.compare(second.time) == .orderedDescending {
+                return false
+            }
+            return true
+        })
+    }
     
     var body: some View {
         List {
@@ -18,7 +26,7 @@ struct PersonalPageDateRow: View {
                 Spacer()
                 Text("KRW \(item.dailyCardExpenditure() + item.dailyCashExpenditure())")
             }) {
-                ForEach(item.expenditureList, id: \.self) {
+                ForEach(sortedList, id: \.self) {
                     PersonalPageExpenditureRow(item: $0)
                 }
                 HStack{
@@ -29,7 +37,7 @@ struct PersonalPageDateRow: View {
                     Spacer()
                 }
             }
-        }.frame(width: 400.0, height: CGFloat(item.expenditureList.count * 50 + 80))
+        }.frame(width: 400.0, height: CGFloat(item.expenditureList.count * 65 + 65))
     }
 }
 

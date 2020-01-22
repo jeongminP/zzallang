@@ -13,6 +13,8 @@ struct PersonalPageExpenditureRow: View {
     
     var body: some View {
         HStack {
+            Text(item.time)
+                .font(.caption)
             item.category.image()
                 .resizable()
                 .frame(width: 50, height: 50)

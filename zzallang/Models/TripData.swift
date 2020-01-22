@@ -99,6 +99,11 @@ struct SharedExpenditureItem: Hashable, Codable {
     var memo: String
     var payer: String
     var related: [String]
+    
+    static func makeNewExpenditureItem() -> SharedExpenditureItem {
+        let newItem = SharedExpenditureItem(title: "", payment: .cash, currency: .krw, price: 0, category: .etc, time: "00:00", memo: "", payer: "", related: [])
+        return newItem
+    }
 }
 
 struct PersonalListItem: Hashable, Codable {
@@ -156,6 +161,15 @@ struct PersonalExpenditureItem: Hashable, Codable {
 enum Payment: String, CaseIterable, Codable, Hashable {
     case cash = "cash"
     case card = "card"
+    
+    func toKoreanString() -> String {
+        switch self {
+        case .cash:
+            return "현금"
+        case .card:
+            return "카드"
+        }
+    }
 }
 
 enum Category: String, CaseIterable, Codable, Hashable {
@@ -218,8 +232,6 @@ enum Currency: String, Codable, Hashable, CaseIterable {
             return 796.01
         case .thb:
             return 38.21
-        default:
-            return 1.0
         }
     }
     
