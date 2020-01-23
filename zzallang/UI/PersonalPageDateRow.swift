@@ -9,6 +9,8 @@
 import SwiftUI
 
 struct PersonalPageDateRow: View {
+    var tripData: TripData
+    var myUserId: String
     var item: PersonalDailyItem
     var sortedList: [PersonalExpenditureItem] {
         item.expenditureList.sorted(by: { first, second in
@@ -29,12 +31,14 @@ struct PersonalPageDateRow: View {
                 ForEach(sortedList, id: \.self) {
                     PersonalPageExpenditureRow(item: $0)
                 }
-                HStack{
-                    Spacer()
-                    Image(systemName: "plus.circle")
-                        .resizable()
-                        .frame(width:30.0, height: 30.0)
-                    Spacer()
+                NavigationLink(destination: PersonalNewExpenditureView(tripData: self.tripData, myUserId: self.myUserId, dateItem: item)) {
+                    HStack{
+                        Spacer()
+                        Image(systemName: "plus.circle")
+                            .resizable()
+                            .frame(width:30.0, height: 30.0)
+                        Spacer()
+                    }
                 }
             }
         }.frame(width: 400.0, height: CGFloat(item.expenditureList.count * 65 + 65))
@@ -45,8 +49,8 @@ struct PersonalPageDateRow_Previews: PreviewProvider {
     static var previews: some View {
         let userData = UserData()
         return Group {
-            PersonalPageDateRow(item: userData.trips[0].personalList[0].dateList[0])
-            PersonalPageDateRow(item: userData.trips[0].personalList[1].dateList[0])
+            PersonalPageDateRow(tripData: userData.trips[0], myUserId: userData.infos[0].userId, item: userData.trips[0].personalList[0].dateList[0])
+            PersonalPageDateRow(tripData: userData.trips[0], myUserId: userData.infos[0].userId, item: userData.trips[0].personalList[1].dateList[0])
         }.previewLayout(.sizeThatFits)
     }
 }

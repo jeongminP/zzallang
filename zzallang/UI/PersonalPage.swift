@@ -50,7 +50,7 @@ struct PersonalPage: View {
             
             List {
                 ForEach(myDateList, id: \.self) { dateItem in
-                    PersonalPageDateRow(item: dateItem)
+                    PersonalPageDateRow(tripData: self.tripData, myUserId: self.myUserId, item: dateItem)
                 }
             }
             .offset(x: -10.0)

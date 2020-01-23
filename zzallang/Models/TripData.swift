@@ -156,6 +156,11 @@ struct PersonalExpenditureItem: Hashable, Codable {
     var category: Category
     var time: String
     var memo: String
+    
+    static func makeNewExpenditureItem() -> PersonalExpenditureItem {
+        let newItem = PersonalExpenditureItem(title: "", payment: .cash, currency: .krw, price: 0, category: .etc, time: "00:00", memo: "")
+        return newItem
+    }
 }
 
 enum Payment: String, CaseIterable, Codable, Hashable {
