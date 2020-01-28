@@ -16,7 +16,7 @@ struct HomeView: View {
         NavigationView{
             List{
                 ForEach(userData.trips) {trip in
-                    NavigationLink(destination: TripPage(tripData: trip)) {
+                    NavigationLink(destination: TripPage(tripIndex: self.userData.tripIndex(of: trip))) {
                         HStack {
                             Spacer()
                             

@@ -37,7 +37,7 @@ struct PersonalPage: View {
         VStack(alignment: HorizontalAlignment.leading) {
             HStack {
                 VStack(alignment: .leading) {
-                    Text("총 지출: ₩\(sharedExpenditure + personalExpenditure)").font(.headline)
+                    Text("나의 총 지출: ₩\(sharedExpenditure + personalExpenditure)").font(.headline)
                     Text("공유 지출: ₩\(sharedExpenditure)")
                     Text("개인 지출: ₩\(personalExpenditure)")
                 }

@@ -10,9 +10,17 @@ import SwiftUI
 
 struct TripPage: View {
     @EnvironmentObject private var userData: UserData
-    var tripData: TripData
+    var tripIndex: Int
+    
+    var tripData: TripData? {
+        userData.tripData(at: tripIndex)
+    }
     
     var body: some View {
+        guard let tripData = tripData else {
+            return AnyView(Text("No Trip Data"))
+        }
+        return AnyView(
             TabView {
                 SharedPage(tripData: tripData)
                     .tabItem {
@@ -26,13 +34,14 @@ struct TripPage: View {
                 }.tag(1)
             }
             .navigationBarTitle(tripData.name)
+        )
     }
 }
 
 struct TripPage_Previews: PreviewProvider {
     static var previews: some View {
         let userData = UserData()
-        return TripPage(tripData: userData.trips[0])
+        return TripPage(tripIndex: 0)
             .environmentObject(userData)
     }
 }

@@ -94,9 +94,6 @@ struct PersonalNewExpenditureView: View {
             paymentPicker
             titleField
             priceField
-            
-            // TODO: 관련된 사람 복수선택 버튼 추가
-            
             categoryPicker
             timePicker
             memoField
