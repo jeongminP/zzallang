@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct SharedPage: View {
-    @EnvironmentObject private var userData: UserData
+//    @EnvironmentObject private var userData: UserData
     var tripData: TripData
     var sharedList: [SharedDailyItem] {
         tripData.sharedDateList

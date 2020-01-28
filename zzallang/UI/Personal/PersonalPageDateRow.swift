@@ -29,7 +29,7 @@ struct PersonalPageDateRow: View {
                 Text("KRW \(item.dailyCardExpenditure() + item.dailyCashExpenditure())")
             }) {
                 ForEach(sortedList, id: \.self) {
-                    PersonalPageExpenditureRow(item: $0)
+                    PersonalPageExpenditureRow(tripData: self.tripData, myUserId: self.myUserId, dateItem: self.item, item: $0)
                 }
                 NavigationLink(destination: PersonalNewExpenditureView(tripData: self.tripData, myUserId: self.myUserId, dateItem: item)) {
                     HStack{

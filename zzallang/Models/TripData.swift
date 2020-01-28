@@ -275,7 +275,7 @@ extension Date {
     static func invertToTime(with timeString: String) -> Date {
         let dateFormatter = DateFormatter()
 
-        dateFormatter.dateFormat = "hh:mm"
+        dateFormatter.dateFormat = "HH:mm"
         if let date:Date = dateFormatter.date(from: timeString) {
             return date
         }
@@ -284,7 +284,7 @@ extension Date {
     
     static func invertTimeToString(with time: Date) -> String {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "hh:mm"
+        dateFormatter.dateFormat = "HH:mm"
 
         let timeString:String = dateFormatter.string(from: time)
         return timeString
