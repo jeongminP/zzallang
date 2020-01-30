@@ -1,23 +1,22 @@
 //
-//  PersonalEditExpenditureView.swift
+//  SharedEditExpenditureView.swift
 //  zzallang
 //
-//  Created by 박정민 on 2020/01/28.
+//  Created by 박정민 on 2020/01/30.
 //  Copyright © 2020 박정민. All rights reserved.
 //
 
 import SwiftUI
 
-struct PersonalEditExpenditureView: View {
+struct SharedEditExpenditureView: View {
     @EnvironmentObject private var userData: UserData
     @Environment(\.presentationMode) var presentationMode
     
     var tripData: TripData
-    var myUserId: String
-    var dateItem: PersonalDailyItem
+    var dateItem: SharedDailyItem
     var expenditureIndex: Int
     
-    @State var expenditureItem: PersonalExpenditureItem
+    @State var expenditureItem: SharedExpenditureItem
     @State var priceString: String
     @State var time: Date
     @State private var showingAlert = false
@@ -51,6 +50,41 @@ struct PersonalEditExpenditureView: View {
             TextField(String(expenditureItem.price), text: $priceString)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding(.trailing)
+        }
+    }
+    
+    var payerPicker: some View {
+        HStack {
+            Text("지출한 사람").font(.headline)
+                .padding()
+            Picker("Payer", selection: $expenditureItem.payer) {
+                ForEach(tripData.personalList, id: \.self) {
+                    Text($0.userId).tag($0.userId)
+                }
+            }
+            .padding(.trailing)
+            .pickerStyle(SegmentedPickerStyle())
+        }
+    }
+    
+    var relatedMultiPicker: some View {
+        VStack(alignment: HorizontalAlignment.leading) {
+            Text("관련된 사람").font(.headline)
+                .padding(.horizontal)
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(alignment: .top, spacing: CGFloat(10)) {
+                    ForEach(tripData.personalList, id: \.self) { person in
+                        RelatedPersonCell(isSelected: self.expenditureItem.related.contains(person.userId), userId: person.userId,
+                            onSelected: {
+                                self.relatedOnSelected(userId: person.userId)
+                        }, onDeselected: {
+                            self.relatedOnDeselected(userId: person.userId)
+                        }
+                        )
+                    }
+                }
+            }
+            .padding(.horizontal)
         }
     }
     
@@ -98,9 +132,11 @@ struct PersonalEditExpenditureView: View {
     }
     
     var body: some View {
-        return VStack(alignment: HorizontalAlignment.leading) {       paymentPicker
+        return VStack(alignment: HorizontalAlignment.leading) {  paymentPicker
             titleField
             priceField
+            payerPicker
+            relatedMultiPicker
             categoryPicker
             timePicker
             memoField
@@ -123,8 +159,19 @@ struct PersonalEditExpenditureView: View {
         }
     }
     
+    func relatedOnSelected(userId: String) {
+        expenditureItem.related.append(userId)
+    }
+    
+    func relatedOnDeselected(userId: String) {
+        if expenditureItem.related.contains(userId),
+            let index = expenditureItem.related.firstIndex(of: userId) {
+            expenditureItem.related.remove(at: index)
+        }
+    }
+    
     func canEdit() -> Bool {
-        if expenditureItem.title.isEmpty || priceString.isEmpty {
+        if expenditureItem.title.isEmpty || priceString.isEmpty || expenditureItem.related.isEmpty {
             return false
         }
         return true
@@ -141,21 +188,17 @@ struct PersonalEditExpenditureView: View {
         expenditureItem.time = Date.invertTimeToString(with: time)
         
         if let tripIndex = userData.trips.firstIndex(of: tripData),
-            let person = userData.trips[tripIndex].personalList.first(where: {
-                $0.userId == myUserId
-            }),
-            let personalIndex = userData.trips[tripIndex].personalList.firstIndex(of: person),
-            let dateIndex = person.dateList.firstIndex(of: dateItem) {
-            userData.trips[tripIndex].personalList[personalIndex].dateList[dateIndex].expenditureList[expenditureIndex] = expenditureItem
+            let dateIndex = userData.trips[tripIndex].sharedDateList.firstIndex(of: dateItem) {
+            userData.trips[tripIndex].sharedDateList[dateIndex].expenditureList[expenditureIndex] = expenditureItem
         }
         presentationMode.wrappedValue.dismiss()
     }
 }
 
-struct PersonalEditExpenditureView_Previews: PreviewProvider {
+struct SharedEditExpenditureView_Previews: PreviewProvider {
     static var previews: some View {
         let userData = UserData()
-        let exampleItem = userData.trips[0].personalList[0].dateList[1].expenditureList[0]
-        return PersonalEditExpenditureView(tripData: userData.trips[0], myUserId: userData.infos[0].userId, dateItem: userData.trips[0].personalList[0].dateList[1], expenditureIndex: 0, expenditureItem: exampleItem, priceString: String(exampleItem.price), time: Date.invertToTime(with: exampleItem.time))
+        let exampleItem = userData.trips[0].sharedDateList[0].expenditureList[0]
+        return SharedEditExpenditureView(tripData: userData.trips[0], dateItem: userData.trips[0].sharedDateList[0], expenditureIndex: 0, expenditureItem: exampleItem, priceString: String(exampleItem.price), time: Date.invertToTime(with: exampleItem.time))
     }
 }

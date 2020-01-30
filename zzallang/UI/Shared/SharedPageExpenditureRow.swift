@@ -9,28 +9,40 @@
 import SwiftUI
 
 struct SharedPageExpenditureRow: View {
+    var tripData: TripData
+    var dateItem: SharedDailyItem
     var item: SharedExpenditureItem
     
     var body: some View {
-        HStack {
-            Text(item.time)
-                .font(.caption)
-            item.category.image()
-                .resizable()
-                .frame(width: 50, height: 50)
-            VStack(alignment: .leading) {
-                Text(item.title).font(.title)
-                Text(item.payer)
-            }
-            Spacer()
-            Text("\(item.currency.toString()) \(item.price)").font(.body)
-        }.frame(height: 50)
+        NavigationLink(destination: SharedEditExpenditureView(tripData: self.tripData, dateItem: self.dateItem, expenditureIndex: sharedExpenditureIndex(of: item), expenditureItem: item, priceString: String(item.price), time: Date.invertToTime(with: item.time))
+        ) {
+            HStack {
+                Text(item.time)
+                    .font(.caption)
+                item.category.image()
+                    .resizable()
+                    .frame(width: 50, height: 50)
+                VStack(alignment: .leading) {
+                    Text(item.title).font(.title)
+                    Text(item.payer)
+                }
+                Spacer()
+                Text("\(item.currency.toString()) \(item.price)").font(.body)
+            }.frame(height: 50)
+        }
+    }
+    
+    func sharedExpenditureIndex(of item: SharedExpenditureItem) -> Int {
+        if let index = dateItem.expenditureList.firstIndex(of: item) {
+            return index
+        }
+        return -1
     }
 }
 
 struct SharedPageExpenditureRow_Previews: PreviewProvider {
     static var previews: some View {
         let userData = UserData()
-        return SharedPageExpenditureRow(item: userData.trips[0].sharedDateList[0].expenditureList[0])
+        return SharedPageExpenditureRow(tripData: userData.trips[0], dateItem: userData.trips[0].sharedDateList[0], item: userData.trips[0].sharedDateList[0].expenditureList[0])
     }
 }

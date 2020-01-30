@@ -28,6 +28,7 @@ struct PersonalNewExpenditureView: View {
                 Text($0.toKoreanString()).tag($0)
             }
         }
+        .padding(.horizontal)
         .pickerStyle(SegmentedPickerStyle())
     }
     
@@ -36,6 +37,8 @@ struct PersonalNewExpenditureView: View {
             Text("지출명").font(.headline)
                 .padding()
             TextField("내역 이름", text: $newItem.title)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .padding(.trailing)
         }
     }
     
@@ -46,6 +49,8 @@ struct PersonalNewExpenditureView: View {
                     .padding()
             }
             TextField("0", text: $priceString)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .padding(.trailing)
         }
     }
     
@@ -67,6 +72,7 @@ struct PersonalNewExpenditureView: View {
                 .padding()
             Spacer()
             DatePicker("time", selection: $time, displayedComponents: .hourAndMinute)
+                .padding(.trailing)
                 .labelsHidden()
         }
     }
@@ -76,6 +82,8 @@ struct PersonalNewExpenditureView: View {
             Text("메모").font(.headline)
                 .padding()
             TextField("메모", text: $newItem.memo)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .padding(.trailing)
         }
     }
     

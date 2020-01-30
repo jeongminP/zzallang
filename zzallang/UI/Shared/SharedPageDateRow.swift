@@ -29,7 +29,7 @@ struct SharedPageDateRow: View {
                 Text("KRW \(item.dailyCardExpenditure() + item.dailyCashExpenditure())")
             }) {
                 ForEach(sortedList, id: \.self) {
-                    SharedPageExpenditureRow(item: $0)
+                    SharedPageExpenditureRow(tripData: self.tripData, dateItem: self.item, item: $0)
                 }
                 NavigationLink(destination: SharedNewExpenditureView(tripData: tripData, dateItem: item)) {
                     HStack{

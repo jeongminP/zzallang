@@ -18,6 +18,7 @@ struct SharedNewExpenditureView: View {
     @State private var newItem: SharedExpenditureItem = SharedExpenditureItem.makeNewExpenditureItem()
     
     @State private var priceString: String = String()
+    @State private var related: [String] = []
     @State private var time = Date()
     @State private var showingAlert = false
     
@@ -27,6 +28,7 @@ struct SharedNewExpenditureView: View {
                 Text($0.toKoreanString()).tag($0)
             }
         }
+        .padding(.horizontal)
         .pickerStyle(SegmentedPickerStyle())
     }
     
@@ -35,6 +37,8 @@ struct SharedNewExpenditureView: View {
             Text("지출명").font(.headline)
                 .padding()
             TextField("내역 이름", text: $newItem.title)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .padding(.trailing)
         }
     }
     
@@ -45,6 +49,8 @@ struct SharedNewExpenditureView: View {
                     .padding()
             }
             TextField("0", text: $priceString)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .padding(.trailing)
         }
     }
     
@@ -57,7 +63,29 @@ struct SharedNewExpenditureView: View {
                     Text($0.userId).tag($0.userId)
                 }
             }
+            .padding(.trailing)
             .pickerStyle(SegmentedPickerStyle())
+        }
+    }
+    
+    var relatedMultiPicker: some View {
+        VStack(alignment: HorizontalAlignment.leading) {
+            Text("관련된 사람").font(.headline)
+                .padding(.horizontal)
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(alignment: .top, spacing: CGFloat(10)) {
+                    ForEach(tripData.personalList, id: \.self) { person in
+                        RelatedPersonCell(userId: person.userId,
+                            onSelected: {
+                                self.relatedOnSelected(userId: person.userId)
+                        }, onDeselected: {
+                            self.relatedOnDeselected(userId: person.userId)
+                        }
+                        )
+                    }
+                }
+            }
+            .padding(.horizontal)
         }
     }
     
@@ -79,6 +107,7 @@ struct SharedNewExpenditureView: View {
                 .padding()
             Spacer()
             DatePicker("time", selection: $time, displayedComponents: .hourAndMinute)
+                .padding(.trailing)
                 .labelsHidden()
         }
     }
@@ -88,6 +117,8 @@ struct SharedNewExpenditureView: View {
             Text("메모").font(.headline)
                 .padding()
             TextField("메모", text: $newItem.memo)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .padding(.trailing)
         }
     }
     
@@ -107,8 +138,7 @@ struct SharedNewExpenditureView: View {
             titleField
             priceField
             payerPicker
-            
-            // TODO: 관련된 사람 복수선택 버튼 추가
+            relatedMultiPicker
             
             categoryPicker
             timePicker
@@ -132,8 +162,19 @@ struct SharedNewExpenditureView: View {
         }
     }
     
+    func relatedOnSelected(userId: String) {
+        related.append(userId)
+    }
+    
+    func relatedOnDeselected(userId: String) {
+        if related.contains(userId),
+            let index = related.firstIndex(of: userId) {
+            related.remove(at: index)
+        }
+    }
+    
     func canMake() -> Bool {
-        if newItem.title.isEmpty || newItem.payer.isEmpty || priceString.isEmpty {
+        if newItem.title.isEmpty || newItem.payer.isEmpty || priceString.isEmpty || related.isEmpty {
             return false
         }
         return true
@@ -147,6 +188,7 @@ struct SharedNewExpenditureView: View {
         }
         
         newItem.price = price
+        newItem.related = related
         newItem.time = Date.invertTimeToString(with: time)
         
         if let tripIndex = userData.trips.firstIndex(of: tripData),
