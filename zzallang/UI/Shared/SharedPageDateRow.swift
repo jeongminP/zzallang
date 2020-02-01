@@ -9,8 +9,13 @@
 import SwiftUI
 
 struct SharedPageDateRow: View {
+    @EnvironmentObject private var userData: UserData
+    
     var tripData: TripData
     var item: SharedDailyItem
+    
+    @State var dailyTitle: String = ""
+    @State private var showingModal = false
     
     var sortedList: [SharedExpenditureItem] {
         item.expenditureList.sorted(by: { first, second in
@@ -24,7 +29,18 @@ struct SharedPageDateRow: View {
     var body: some View {
         List {
             Section(header: HStack {
-                Text("\(item.date) / \(item.dailyTitle)")
+                Button(action: {
+                    self.dailyTitle = self.item.dailyTitle
+                    self.showingModal.toggle()
+                }) {
+                    Text("\(item.date) / \(item.dailyTitle)")
+                        .foregroundColor(Color.black)
+                }
+                .sheet(isPresented: $showingModal) {
+                    TextFieldAlert(title: "제목", text: self.$dailyTitle, onDone: { self.onChangeDailyTitle()
+                    })
+                }
+                
                 Spacer()
                 Text("KRW \(item.dailyCardExpenditure() + item.dailyCashExpenditure())")
             }) {
@@ -42,6 +58,15 @@ struct SharedPageDateRow: View {
                 }
             }
         }.frame(width: 400.0, height: CGFloat(item.expenditureList.count * 63 + 65))
+    }
+    
+    func onChangeDailyTitle() {
+        if let tripIndex = userData.trips.firstIndex(of: tripData),
+            let dateIndex = tripData.sharedDateList.firstIndex(of: item) {
+            
+            userData.trips[tripIndex].sharedDateList[dateIndex].dailyTitle = self.dailyTitle
+        }
+        return
     }
 }
 

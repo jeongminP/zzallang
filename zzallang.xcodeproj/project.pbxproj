@@ -35,6 +35,8 @@
 		25B60DB723E05296008DDED4 /* PersonalEditExpenditureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25B60DB623E05296008DDED4 /* PersonalEditExpenditureView.swift */; };
 		25B60DBB23E2C994008DDED4 /* RelatedPersonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25B60DBA23E2C994008DDED4 /* RelatedPersonCell.swift */; };
 		25B60DBD23E2DDDA008DDED4 /* SharedEditExpenditureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25B60DBC23E2DDDA008DDED4 /* SharedEditExpenditureView.swift */; };
+		25B60DC023E30061008DDED4 /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25B60DBF23E30061008DDED4 /* UserView.swift */; };
+		25B60DC323E319E5008DDED4 /* TextFieldAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25B60DC223E319E5008DDED4 /* TextFieldAlert.swift */; };
 		25B6416123BCF4C600F1C492 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 25B6416023BCF4C600F1C492 /* GoogleService-Info.plist */; };
 		C1AA8A10159C1C5DA4AAC877 /* libPods-zzallang.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A72C059627840901B4F20FDF /* libPods-zzallang.a */; };
 		F9C02E57E1CA15AA29AAF976 /* libPods-zzallang-zzallangUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B8DF9955A608167F3E307AC6 /* libPods-zzallang-zzallangUITests.a */; };
@@ -108,6 +110,9 @@
 		25B60DB623E05296008DDED4 /* PersonalEditExpenditureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalEditExpenditureView.swift; sourceTree = "<group>"; };
 		25B60DBA23E2C994008DDED4 /* RelatedPersonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelatedPersonCell.swift; sourceTree = "<group>"; };
 		25B60DBC23E2DDDA008DDED4 /* SharedEditExpenditureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedEditExpenditureView.swift; sourceTree = "<group>"; };
+		25B60DBF23E30061008DDED4 /* UserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserView.swift; sourceTree = "<group>"; };
+		25B60DC123E30183008DDED4 /* zzallang.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = zzallang.entitlements; sourceTree = "<group>"; };
+		25B60DC223E319E5008DDED4 /* TextFieldAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldAlert.swift; sourceTree = "<group>"; };
 		25B6416023BCF4C600F1C492 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		508E0A4421CFD6AD5451115D /* Pods-zzallang-zzallangTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-zzallang-zzallangTests.release.xcconfig"; path = "Target Support Files/Pods-zzallang-zzallangTests/Pods-zzallang-zzallangTests.release.xcconfig"; sourceTree = "<group>"; };
 		6205ACC78DECBB43B5962BCB /* Pods-zzallang-zzallangTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-zzallang-zzallangTests.debug.xcconfig"; path = "Target Support Files/Pods-zzallang-zzallangTests/Pods-zzallang-zzallangTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -173,6 +178,8 @@
 				2592BA1923BCD13F00E747E0 /* HomeView.swift */,
 				250F843723C48079000A2ECA /* NewTripView.swift */,
 				250F843523C48038000A2ECA /* TripPage.swift */,
+				25B60DBF23E30061008DDED4 /* UserView.swift */,
+				25B60DC223E319E5008DDED4 /* TextFieldAlert.swift */,
 				25B60DB423E05110008DDED4 /* Shared */,
 				25B60DB523E05122008DDED4 /* Personal */,
 			);
@@ -204,6 +211,7 @@
 		2592BA1423BCD13F00E747E0 /* zzallang */ = {
 			isa = PBXGroup;
 			children = (
+				25B60DC123E30183008DDED4 /* zzallang.entitlements */,
 				255E0D3723CDA34E00253438 /* UI */,
 				250F843423C47FE9000A2ECA /* Models */,
 				250F842723C44DF5000A2ECA /* Resources */,
@@ -514,7 +522,9 @@
 				2592BA1823BCD13F00E747E0 /* SceneDelegate.swift in Sources */,
 				250F842D23C479FB000A2ECA /* TripData.swift in Sources */,
 				25B60DBB23E2C994008DDED4 /* RelatedPersonCell.swift in Sources */,
+				25B60DC323E319E5008DDED4 /* TextFieldAlert.swift in Sources */,
 				25B60DAF23D6E893008DDED4 /* PersonalPageExpenditureRow.swift in Sources */,
+				25B60DC023E30061008DDED4 /* UserView.swift in Sources */,
 				250F844623C6FCFB000A2ECA /* PersonalPage.swift in Sources */,
 				250F843623C48038000A2ECA /* TripPage.swift in Sources */,
 				250F844A23C73A06000A2ECA /* SharedPageDateRow.swift in Sources */,
@@ -687,8 +697,10 @@
 			baseConfigurationReference = 21EF947827CB40ECD223A910 /* Pods-zzallang.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = zzallang/zzallang.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"zzallang/Preview Content\"";
+				DEVELOPMENT_TEAM = 3SQM9YZ54A;
 				ENABLE_PREVIEWS = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -712,8 +724,10 @@
 			baseConfigurationReference = 89FF7B09FC84D025C418BD2B /* Pods-zzallang.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = zzallang/zzallang.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"zzallang/Preview Content\"";
+				DEVELOPMENT_TEAM = 3SQM9YZ54A;
 				ENABLE_PREVIEWS = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

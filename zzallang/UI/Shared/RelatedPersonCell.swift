@@ -33,7 +33,7 @@ struct RelatedPersonCell: View {
     }
     
     func onClicked() {
-        self.isSelected = !self.isSelected
+        self.isSelected.toggle()
         if isSelected == true {
             onSelected()
         } else {

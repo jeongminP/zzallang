@@ -43,14 +43,16 @@ struct NewTripView: View {
     }
     
     var body: some View {
-        List {
+        VStack(alignment: .leading, spacing: 0) {
             HStack {
-                Text("여행 이름")
-                Divider()
+                Text("여행 이름").bold()
+                    .padding()
                 TextField("여행 이름", text: $newTrip.name)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .padding(.trailing)
             }
             
-            VStack(alignment: .leading, spacing: 20) {
+            VStack(alignment: .leading, spacing: 0) {
                     Text("여행 시작일").bold()
                     DatePicker(
                         "여행 시작일",
@@ -59,9 +61,9 @@ struct NewTripView: View {
                         displayedComponents: .date)
                         .labelsHidden()
             }
-            .padding(.top)
+            .padding(.leading)
 
-            VStack(alignment: .leading, spacing: 20) {
+            VStack(alignment: .leading, spacing: 0) {
                     Text("여행 종료일").bold()
                     DatePicker(
                         "여행 종료일",
@@ -70,9 +72,9 @@ struct NewTripView: View {
                         displayedComponents: .date)
                         .labelsHidden()
             }
-            .padding(.top)
+            .padding(.leading)
             
-            VStack(alignment: .leading) {
+            VStack(alignment: .leading, spacing: 0) {
                 Text("화폐 단위").bold()
                 Picker("화폐 단위", selection: $newTrip.currency) {
                     ForEach(Currency.allCases, id: \.self) { currency in
@@ -82,8 +84,9 @@ struct NewTripView: View {
                 .pickerStyle(WheelPickerStyle())
                 .labelsHidden()
             }
-            .padding(.top)
+            .padding(.leading)
         }
+        .offset(x: 0, y: 30.0)
         .navigationBarTitle("새 여행 만들기")
         .navigationBarItems(trailing: makingNewTripButton)
     }

@@ -12,6 +12,14 @@ import SwiftUI
 struct HomeView: View {
     @EnvironmentObject private var userData: UserData
     
+    var userButton: some View {
+        NavigationLink(destination: UserView()) {
+            Image(systemName: "person.crop.circle")
+                .resizable()
+                .frame(width: 30.0, height: 30.0)
+        }
+    }
+    
     var body: some View {
         NavigationView{
             List{
@@ -46,6 +54,7 @@ struct HomeView: View {
                 }
             }
             .navigationBarTitle("내 여행 목록", displayMode: .inline)
+            .navigationBarItems(trailing: userButton)
         }
     }
 }

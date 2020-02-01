@@ -9,6 +9,8 @@
 import SwiftUI
 
 struct PersonalPageDateRow: View {
+    @EnvironmentObject private var userData: UserData
+    
     var tripData: TripData
     var myUserId: String
     var item: PersonalDailyItem
@@ -21,10 +23,24 @@ struct PersonalPageDateRow: View {
         })
     }
     
+    @State var dailyTitle: String = ""
+    @State private var showingModal = false
+    
     var body: some View {
         List {
             Section(header: HStack {
-                Text("\(item.date) / \(item.dailyTitle)")
+                Button(action: {
+                    self.dailyTitle = self.item.dailyTitle
+                    self.showingModal.toggle()
+                }) {
+                    Text("\(item.date) / \(item.dailyTitle)")
+                        .foregroundColor(Color.black)
+                }
+                .sheet(isPresented: $showingModal) {
+                    TextFieldAlert(title: "제목", text: self.$dailyTitle, onDone: { self.onChangeDailyTitle()
+                    })
+                }
+                
                 Spacer()
                 Text("KRW \(item.dailyCardExpenditure() + item.dailyCashExpenditure())")
             }) {
@@ -43,6 +59,18 @@ struct PersonalPageDateRow: View {
             }
         }.frame(width: 400.0, height: CGFloat(item.expenditureList.count * 65 + 65))
     }
+    
+    func onChangeDailyTitle() {
+        if let tripIndex = userData.trips.firstIndex(of: tripData),
+            let personalIndex = userData.trips[tripIndex].personalList.firstIndex(where: {
+                $0.userId == myUserId
+            }),
+            let dateIndex = userData.trips[tripIndex].personalList[personalIndex].dateList.firstIndex(of: item) {
+            userData.trips[tripIndex].personalList[personalIndex].dateList[dateIndex].dailyTitle = self.dailyTitle
+        }
+        return
+    }
+
 }
 
 struct PersonalPageDateRow_Previews: PreviewProvider {
