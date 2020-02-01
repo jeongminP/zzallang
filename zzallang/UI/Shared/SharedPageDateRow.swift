@@ -14,7 +14,7 @@ struct SharedPageDateRow: View {
     var tripData: TripData
     var item: SharedDailyItem
     
-    @State var dailyTitle: String = ""
+    @State private var dailyTitle: String = ""
     @State private var showingModal = false
     
     var sortedList: [SharedExpenditureItem] {

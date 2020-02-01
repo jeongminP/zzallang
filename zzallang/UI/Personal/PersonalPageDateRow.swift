@@ -23,7 +23,7 @@ struct PersonalPageDateRow: View {
         })
     }
     
-    @State var dailyTitle: String = ""
+    @State private var dailyTitle: String = ""
     @State private var showingModal = false
     
     var body: some View {

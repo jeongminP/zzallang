@@ -10,7 +10,7 @@ import SwiftUI
 
 struct PersonalEditExpenditureView: View {
     @EnvironmentObject private var userData: UserData
-    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.presentationMode) private var presentationMode
     
     var tripData: TripData
     var myUserId: String
@@ -87,7 +87,7 @@ struct PersonalEditExpenditureView: View {
         }
     }
     
-    var makingNewExpenditureButton: some View {
+    var editingExpenditureButton: some View {
         Button(action: { self.verifyToEditExpenditure() }) {
             Text("확인")
                 .padding()
@@ -105,10 +105,9 @@ struct PersonalEditExpenditureView: View {
             timePicker
             memoField
             
-            makingNewExpenditureButton
+            editingExpenditureButton
         }
         .navigationBarTitle("개인지출 추가")
-        .navigationBarItems(trailing: makingNewExpenditureButton)
     }
     
     func flipCurrency() {

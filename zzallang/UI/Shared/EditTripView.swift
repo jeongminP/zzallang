@@ -1,29 +1,24 @@
 //
-//  NewTripView.swift
+//  EditTripView.swift
 //  zzallang
 //
-//  Created by 박정민 on 2020/01/07.
+//  Created by 박정민 on 2020/02/01.
 //  Copyright © 2020 박정민. All rights reserved.
 //
 
 import SwiftUI
 
-struct NewTripView: View {
+struct EditTripView: View {
     @EnvironmentObject private var userData: UserData
-    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.presentationMode) private var presentationMode
     
-    @State private var newTrip: TripData = TripData.makeNewTripData()
+    var tripIndex: Int
     
-    @State private var startingDateObject: Date = Date()
-    @State private var finishingDateObject: Date = Date()
+    @State var tripData: TripData
+    @State var startingDateObject: Date
+    @State var finishingDateObject: Date
+    
     @State private var showingAlert = false
-    
-    private var newId: Int {
-        if let lastId = userData.trips.last?.id {
-            return lastId + 1
-        }
-        return 1001
-    }
     
     var dateRange: ClosedRange<Date> {
         let startingDateObject = Date()
@@ -32,11 +27,10 @@ struct NewTripView: View {
         return min...max
     }
     
-    var makingNewTripButton: some View {
-        Button(action: { self.verifyToMakeNewTrip() }) {
+    var editingTripButton: some View {
+        Button(action: { self.verifyToEditTrip() }) {
             Text("확인")
-                .padding()
-            }.disabled(!canMake())
+            }.disabled(!canEdit())
         .alert(isPresented: $showingAlert) {
             Alert(title: Text("알림"), message: Text("일정을 올바르게 입력해주세요"), dismissButton: .default(Text("확인")))
         }
@@ -45,9 +39,15 @@ struct NewTripView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             HStack {
+                Spacer()
+                editingTripButton
+                    .padding()
+            }
+            
+            HStack {
                 Text("여행 이름").bold()
                     .padding()
-                TextField("여행 이름", text: $newTrip.name)
+                TextField("여행 이름", text: $tripData.name)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding(.trailing)
             }
@@ -76,7 +76,7 @@ struct NewTripView: View {
             
             VStack(alignment: .leading, spacing: 0) {
                 Text("화폐 단위").bold()
-                Picker("화폐 단위", selection: $newTrip.currency) {
+                Picker("화폐 단위", selection: $tripData.currency) {
                     ForEach(Currency.allCases, id: \.self) { currency in
                         Text(currency.rawValue).tag(currency)
                     }
@@ -86,35 +86,34 @@ struct NewTripView: View {
             }
             .padding(.leading)
         }
-        .navigationBarTitle("새 여행 만들기")
-        .navigationBarItems(trailing: makingNewTripButton)
+        .offset(y: 10.0)
     }
     
-    func canMake() -> Bool {
-        if newTrip.name.isEmpty {
+    func canEdit() -> Bool {
+        if tripData.name.isEmpty {
             return false
         }
         return true
     }
     
-    func verifyToMakeNewTrip() {
-        newTrip.id = newId
-        
+    func verifyToEditTrip() {
         if startingDateObject > finishingDateObject {
             self.showingAlert = true
             return
         }
         
-        newTrip.startingDate = Date.invertToString(with: startingDateObject)
-        newTrip.finishingDate = Date.invertToString(with: finishingDateObject)
+        tripData.startingDate = Date.invertToString(with: startingDateObject)
+        tripData.finishingDate = Date.invertToString(with: finishingDateObject)
         
-        userData.trips.append(newTrip)
+        userData.trips[tripIndex] = tripData
         presentationMode.wrappedValue.dismiss()
     }
 }
 
-struct NewTripView_Previews: PreviewProvider {
+struct EditTripView_Previews: PreviewProvider {
     static var previews: some View {
-        NewTripView().environmentObject(UserData())
+        let userData = UserData()
+        let exampleData = userData.trips[0]
+        return EditTripView(tripIndex: 0, tripData: exampleData, startingDateObject: Date.invertToDate(with: exampleData.startingDate), finishingDateObject: Date.invertToDate(with: exampleData.finishingDate))
     }
 }

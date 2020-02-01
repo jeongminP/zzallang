@@ -9,6 +9,8 @@
 import SwiftUI
 
 struct SharedPage: View {
+    @EnvironmentObject private var userData: UserData
+    
     var tripData: TripData
     var sharedList: [SharedDailyItem] {
         tripData.sharedDateList
@@ -17,10 +19,23 @@ struct SharedPage: View {
         tripData.totalCashExpenditure() + tripData.totalCardExpenditure()
     }
     
+    @State private var showingModal: Bool = false
+    
     var body: some View {
         VStack(alignment: HorizontalAlignment.leading) {
             VStack(alignment: HorizontalAlignment.leading) {
-                Text("여행기간 : \(tripData.startingDate) ~ \(tripData.finishingDate)").font(.headline) //추후 여행정보 수정을 위한 버튼으로 변경
+                Button(action: {
+                    self.showingModal.toggle()
+                }) {
+                    Text("여행기간 : \(tripData.startingDate) ~ \(tripData.finishingDate)").font(.headline)
+                        .foregroundColor(Color.black)
+                }.sheet(isPresented: self.$showingModal) {
+                    EditTripView(tripIndex: self.userData.tripIndex(of: self.tripData),
+                        tripData: self.tripData,
+                        startingDateObject: Date.invertToDate(with: self.tripData.startingDate),
+                        finishingDateObject: Date.invertToDate(with: self.tripData.finishingDate))
+                            .environmentObject(self.userData)
+                }
                 HStack {
                     Text("총 지출: ₩\(totalExpenditure)").font(.headline)
                     Text("현금 ₩\(tripData.totalCashExpenditure())")
@@ -38,7 +53,6 @@ struct SharedPage: View {
         }
         .offset(x: -10.0, y: 10.0)
     }
-    
 }
 
 struct SharedPage_Previews: PreviewProvider {

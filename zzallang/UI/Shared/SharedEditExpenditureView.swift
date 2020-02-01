@@ -121,7 +121,7 @@ struct SharedEditExpenditureView: View {
         }
     }
     
-    var makingNewExpenditureButton: some View {
+    var editingExpenditureButton: some View {
         Button(action: { self.verifyToEditExpenditure() }) {
             Text("확인")
                 .padding()
@@ -141,10 +141,9 @@ struct SharedEditExpenditureView: View {
             timePicker
             memoField
             
-            makingNewExpenditureButton
+            editingExpenditureButton
         }
         .navigationBarTitle("개인지출 추가")
-        .navigationBarItems(trailing: makingNewExpenditureButton)
     }
     
     func flipCurrency() {
