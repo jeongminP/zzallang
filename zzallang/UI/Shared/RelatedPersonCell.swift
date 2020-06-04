@@ -21,7 +21,7 @@ struct RelatedPersonCell: View {
         }) {
             Text(userId)
                 .padding(.horizontal)
-                .frame(maxHeight: 40)
+                .frame(height: 40)
                 .overlay(
                     RoundedRectangle(cornerRadius: 13)
                         .stroke(Color.orange, lineWidth: 7)

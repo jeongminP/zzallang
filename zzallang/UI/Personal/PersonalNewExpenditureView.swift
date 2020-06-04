@@ -72,7 +72,7 @@ struct PersonalNewExpenditureView: View {
                 .padding()
             Spacer()
             DatePicker("time", selection: $time, displayedComponents: .hourAndMinute)
-                .padding(.trailing)
+                .frame(width: UIScreen.main.bounds.width - 70)
                 .labelsHidden()
         }
     }
@@ -98,18 +98,20 @@ struct PersonalNewExpenditureView: View {
     }
     
     var body: some View {
-        VStack(alignment: HorizontalAlignment.leading) {
-            paymentPicker
-            titleField
-            priceField
-            categoryPicker
-            timePicker
-            memoField
-            
-            makingNewExpenditureButton
+        ScrollView {
+            VStack(alignment: HorizontalAlignment.leading) {
+                paymentPicker
+                titleField
+                priceField
+                categoryPicker
+                timePicker
+                memoField
+                
+                makingNewExpenditureButton
+            }
+            .padding(.top)
         }
         .navigationBarTitle("개인지출 추가")
-        .navigationBarItems(trailing: makingNewExpenditureButton)
     }
     
     func flipCurrency() {

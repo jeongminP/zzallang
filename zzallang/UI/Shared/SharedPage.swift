@@ -36,14 +36,14 @@ struct SharedPage: View {
                         finishingDateObject: Date.invertToDate(with: self.tripData.finishingDate))
                             .environmentObject(self.userData)
                 }
+                Text("총 지출: ₩\(totalExpenditure)").font(.headline)
                 HStack {
-                    Text("총 지출: ₩\(totalExpenditure)").font(.headline)
                     Text("현금 ₩\(tripData.totalCashExpenditure())")
                     Text("카드 ₩\(tripData.totalCardExpenditure())")
                 }
             }
-            .frame(width: CGFloat(400.0))
-            .offset(x: 10.0)
+            .padding(.top)
+            .padding(.leading)
             
             List {
                 ForEach(sharedList, id: \.self) { dateItem in
@@ -51,7 +51,6 @@ struct SharedPage: View {
                 }
             }
         }
-        .offset(x: -10.0, y: 10.0)
     }
 }
 

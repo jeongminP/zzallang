@@ -57,7 +57,7 @@ struct PersonalPageDateRow: View {
                     }
                 }
             }
-        }.frame(width: 400.0, height: CGFloat(item.expenditureList.count * 65 + 65))
+        }.frame(height: CGFloat(item.expenditureList.count * 65 + 65))
     }
     
     func onChangeDailyTitle() {

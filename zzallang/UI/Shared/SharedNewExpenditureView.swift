@@ -73,7 +73,7 @@ struct SharedNewExpenditureView: View {
             Text("관련된 사람").font(.headline)
                 .padding(.horizontal)
             ScrollView(.horizontal, showsIndicators: false) {
-                HStack(alignment: .top, spacing: CGFloat(10)) {
+                HStack(alignment: .top, spacing: 10) {
                     ForEach(tripData.personalList, id: \.self) { person in
                         RelatedPersonCell(userId: person.userId,
                             onSelected: {
@@ -107,8 +107,8 @@ struct SharedNewExpenditureView: View {
                 .padding()
             Spacer()
             DatePicker("time", selection: $time, displayedComponents: .hourAndMinute)
-                .padding(.trailing)
                 .labelsHidden()
+                .frame(width: UIScreen.main.bounds.width - 70)
         }
     }
     
@@ -133,21 +133,23 @@ struct SharedNewExpenditureView: View {
     }
     
     var body: some View {
-        VStack(alignment: HorizontalAlignment.leading) {
-            paymentPicker
-            titleField
-            priceField
-            payerPicker
-            relatedMultiPicker
-            
-            categoryPicker
-            timePicker
-            memoField
-            
-            makingNewExpenditureButton
+        ScrollView {
+            VStack(alignment: HorizontalAlignment.leading) {
+                paymentPicker
+                titleField
+                priceField
+                payerPicker
+                relatedMultiPicker
+                
+                categoryPicker
+                timePicker
+                memoField
+                
+                makingNewExpenditureButton
+            }
+            .padding(.top)
         }
         .navigationBarTitle("공유지출 추가")
-        .navigationBarItems(trailing: makingNewExpenditureButton)
     }
     
     func flipCurrency() {

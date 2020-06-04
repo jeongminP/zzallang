@@ -57,7 +57,7 @@ struct SharedPageDateRow: View {
                     }
                 }
             }
-        }.frame(width: 400.0, height: CGFloat(item.expenditureList.count * 63 + 65))
+        }.frame(height: CGFloat(item.expenditureList.count * 63 + 65))
     }
     
     func onChangeDailyTitle() {

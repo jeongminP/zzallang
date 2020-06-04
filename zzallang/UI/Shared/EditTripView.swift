@@ -37,22 +37,24 @@ struct EditTripView: View {
     }
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
+        VStack {
             HStack {
                 Spacer()
                 editingTripButton
-                    .padding()
+                    .padding(.horizontal)
+                    .padding(.top)
             }
             
-            HStack {
-                Text("여행 이름").bold()
-                    .padding()
-                TextField("여행 이름", text: $tripData.name)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .padding(.trailing)
-            }
-            
-            VStack(alignment: .leading, spacing: 0) {
+            ScrollView {
+                HStack {
+                    Text("여행 이름").bold()
+                        .padding()
+                    TextField("여행 이름", text: $tripData.name)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .padding(.trailing)
+                }.padding(.horizontal)
+                
+                VStack(alignment: .leading, spacing: 0) {
                     Text("여행 시작일").bold()
                     DatePicker(
                         "여행 시작일",
@@ -60,10 +62,9 @@ struct EditTripView: View {
                         in: dateRange,
                         displayedComponents: .date)
                         .labelsHidden()
-            }
-            .padding(.leading)
-
-            VStack(alignment: .leading, spacing: 0) {
+                }
+                
+                VStack(alignment: .leading, spacing: 0) {
                     Text("여행 종료일").bold()
                     DatePicker(
                         "여행 종료일",
@@ -71,22 +72,23 @@ struct EditTripView: View {
                         in: dateRange,
                         displayedComponents: .date)
                         .labelsHidden()
-            }
-            .padding(.leading)
-            
-            VStack(alignment: .leading, spacing: 0) {
-                Text("화폐 단위").bold()
-                Picker("화폐 단위", selection: $tripData.currency) {
-                    ForEach(Currency.allCases, id: \.self) { currency in
-                        Text(currency.rawValue).tag(currency)
-                    }
                 }
-                .pickerStyle(WheelPickerStyle())
-                .labelsHidden()
+                
+                VStack(alignment: .leading, spacing: 0) {
+                    Text("화폐 단위").bold()
+                    Picker("화폐 단위", selection: $tripData.currency) {
+                        ForEach(Currency.allCases, id: \.self) { currency in
+                            Text(currency.rawValue).tag(currency)
+                        }
+                    }
+                    .pickerStyle(WheelPickerStyle())
+                    .labelsHidden()
+                }
             }
-            .padding(.leading)
+//            .padding(.leading)
+//            .padding(.top)
+//            .offset(y: 10.0)
         }
-        .offset(y: 10.0)
     }
     
     func canEdit() -> Bool {

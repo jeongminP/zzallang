@@ -29,8 +29,7 @@ struct HomeView: View {
                             Spacer()
                             
                             Text(trip.name)
-                            .font(.headline)
-                            .padding(.leading, 10.0)
+                                .font(.headline)
                                 .frame(height: 100.0)
                             
                             Spacer()
@@ -55,6 +54,9 @@ struct HomeView: View {
             }
             .navigationBarTitle("내 여행 목록", displayMode: .inline)
             .navigationBarItems(trailing: userButton)
+        }.onAppear{
+            
+            print("appearing")
         }
     }
 }

@@ -43,16 +43,18 @@ struct NewTripView: View {
     }
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            HStack {
-                Text("여행 이름").bold()
-                    .padding()
-                TextField("여행 이름", text: $newTrip.name)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .padding(.trailing)
-            }
-            
+        ScrollView {
             VStack(alignment: .leading, spacing: 0) {
+                HStack {
+                    Text("여행 이름").bold()
+                        .padding(.trailing)
+                        .padding(.vertical)
+                    TextField("여행 이름", text: $newTrip.name)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .padding(.trailing)
+                }
+                
+                VStack(alignment: .leading, spacing: 0) {
                     Text("여행 시작일").bold()
                     DatePicker(
                         "여행 시작일",
@@ -60,10 +62,9 @@ struct NewTripView: View {
                         in: dateRange,
                         displayedComponents: .date)
                         .labelsHidden()
-            }
-            .padding(.leading)
-
-            VStack(alignment: .leading, spacing: 0) {
+                }
+                
+                VStack(alignment: .leading, spacing: 0) {
                     Text("여행 종료일").bold()
                     DatePicker(
                         "여행 종료일",
@@ -71,23 +72,23 @@ struct NewTripView: View {
                         in: dateRange,
                         displayedComponents: .date)
                         .labelsHidden()
-            }
-            .padding(.leading)
-            
-            VStack(alignment: .leading, spacing: 0) {
-                Text("화폐 단위").bold()
-                Picker("화폐 단위", selection: $newTrip.currency) {
-                    ForEach(Currency.allCases, id: \.self) { currency in
-                        Text(currency.rawValue).tag(currency)
-                    }
                 }
-                .pickerStyle(WheelPickerStyle())
-                .labelsHidden()
+                
+                VStack(alignment: .leading, spacing: 0) {
+                    Text("화폐 단위").bold()
+                    Picker("화폐 단위", selection: $newTrip.currency) {
+                        ForEach(Currency.allCases, id: \.self) { currency in
+                            Text(currency.rawValue).tag(currency)
+                        }
+                    }
+                    .pickerStyle(WheelPickerStyle())
+                    .labelsHidden()
+                }
             }
             .padding(.leading)
+            .navigationBarTitle("새 여행 만들기")
+            .navigationBarItems(trailing: makingNewTripButton)
         }
-        .navigationBarTitle("새 여행 만들기")
-        .navigationBarItems(trailing: makingNewTripButton)
     }
     
     func canMake() -> Bool {

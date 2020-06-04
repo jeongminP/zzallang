@@ -106,7 +106,7 @@ struct SharedEditExpenditureView: View {
                 .padding()
             Spacer()
             DatePicker("time", selection: $time, displayedComponents: .hourAndMinute)
-                .padding(.trailing)
+                .frame(width: UIScreen.main.bounds.width - 70)
                 .labelsHidden()
         }
     }
@@ -132,18 +132,20 @@ struct SharedEditExpenditureView: View {
     }
     
     var body: some View {
-        return VStack(alignment: HorizontalAlignment.leading) {  paymentPicker
-            titleField
-            priceField
-            payerPicker
-            relatedMultiPicker
-            categoryPicker
-            timePicker
-            memoField
-            
-            editingExpenditureButton
+        ScrollView {
+            VStack(alignment: HorizontalAlignment.leading) { paymentPicker
+                titleField
+                priceField
+                payerPicker
+                relatedMultiPicker
+                categoryPicker
+                timePicker
+                memoField
+                
+                editingExpenditureButton
+            }.padding(.top)
         }
-        .navigationBarTitle("개인지출 추가")
+        .navigationBarTitle("공유지출 수정")
     }
     
     func flipCurrency() {

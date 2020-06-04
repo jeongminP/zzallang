@@ -45,17 +45,15 @@ struct PersonalPage: View {
                 Text("자세히").font(.headline)
                 .padding()
             }
-            .frame(width: CGFloat(400.0))
-            .offset(x: 10.0)
+            .padding(.top)
+            .padding(.leading)
             
             List {
                 ForEach(myDateList, id: \.self) { dateItem in
                     PersonalPageDateRow(tripData: self.tripData, myUserId: self.myUserId, item: dateItem)
                 }
             }
-            .offset(x: -10.0)
         }
-        .offset(x: 0.0, y: 10.0)
     }
 }
 
